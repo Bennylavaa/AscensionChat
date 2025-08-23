@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17-jdk-alpine
+FROM eclipse-temurin:17-jre-alpine
 ARG GH_REPO_OWNER
 ARG NAME_ZIP
 ENV JAVA_OPTS=""
