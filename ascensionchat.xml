@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <Container version="2">
-  <Name>wowchat-epoch</Name>
-  <Repository>doctorbeefy/wowchat-epoch</Repository>
-  <Registry>https://hub.docker.com/r/doctorbeefy/wowchat-epoch</Registry>
+  <Name>ascensionchat</Name>
+  <Repository>doctorbeefy/ascensionchat</Repository>
+  <Registry>https://hub.docker.com/r/doctorbeefy/ascensionchat</Registry>
   <Network>bridge</Network>
   <MyIP/>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
-  <Support>https://github.com/bennylavaa/wowchat-epoch/issues</Support>
-  <Project>https://github.com/bennylavaa/wowchat-epoch</Project>
+  <Support>https://github.com/bennylavaa/ascensionchat/issues</Support>
+  <Project>https://github.com/bennylavaa/ascensionchat</Project>
   <Overview>A selfhosted chatbot for communication between Project Epoch and Discord.</Overview>
   <Category>Game:Other</Category>
   <WebUI/>
-  <TemplateURL>https://raw.githubusercontent.com/bennylavaa/wowchat-epoch/main/wowchat-epoch.xml</TemplateURL>
+  <TemplateURL>https://raw.githubusercontent.com/bennylavaa/ascensionchat/main/ascensionchat.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/Bennylavaa/wowchat-epoch/main/images/icon.png</Icon>
   <ExtraParams/>
   <PostArgs/>
