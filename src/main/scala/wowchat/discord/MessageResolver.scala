@@ -202,7 +202,7 @@ class MessageResolverWotLK(jda: JDA) extends MessageResolverTBC(jda) {
   )
 
   // Access realm name from the config
-  private val epochRealms = Set("Kezan", "Gurubashi", "Menithil")
+  private val epochRealms = Set("Kezan", "Gurubashi", "Menethil")
   private val isEpochRealm = epochRealms.contains(Global.config.wow.realmlist.name)
 
   override protected val linkSite = {
