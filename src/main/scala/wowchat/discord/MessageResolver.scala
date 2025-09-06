@@ -8,8 +8,6 @@ import wowchat.game.GameResources
 import scala.collection.JavaConverters._
 import scala.collection.mutable
 
-import wowchat.common.Global
-
 object MessageResolver {
 
   def apply(jda: JDA): MessageResolver = {
@@ -201,43 +199,9 @@ class MessageResolverWotLK(jda: JDA) extends MessageResolverTBC(jda) {
     "spell" -> "\\|Htrade:(\\d+):.+?\\|h\\[(.+?)\\]\\|h\\s?".r
   )
 
-  // Access realm name from the config
-  private val epochRealms = Set("Kezan", "Gurubashi", "Menethil")
-  private val isEpochRealm = epochRealms.contains(Global.config.wow.realmlist.name)
-
-  override protected val linkSite = {
-    if (isEpochRealm) "https://www.epoch-drops.com/" 
-    else "https://db.ascension.gg/"
-  }
-
-  override def resolveLinks(message: String): String = {
-    linkRegexes.foldLeft(message) {
-      case (result, (classicDbKey, regex)) =>
-        regex.replaceAllIn(result, m => {
-          if (isEpochRealm) {
-            // Epoch format: /item/12345
-            s"[[${m.group(2)}]](<$linkSite$classicDbKey/${m.group(1)}>) "
-          } else {
-            // Ascension format: ?item=12345
-            s"[[${m.group(2)}]](<$linkSite?$classicDbKey=${m.group(1)}>) "
-          }
-        })
-    }
-  }
-}
-
-/* Original MessageResolverWotLK - uncomment to revert
-class MessageResolverWotLK(jda: JDA) extends MessageResolverTBC(jda) {
-  override protected val linkRegexes = Seq(
-    "item" -> "\\|.+?\\|Hitem:(\\d+):.+?\\|h\\[(.+?)\\]\\|h\\|r\\s?".r,
-    "spell" -> "\\|.+?\\|(?:Hspell|Henchant|Htalent)?:(\\d+).*?\\|h\\[(.+?)\\]\\|h\\|r\\s?".r,
-    "quest" -> "\\|.+?\\|Hquest:(\\d+):.+?\\|h\\[(.+?)\\]\\|h\\|r\\s?".r,
-    "achievement" -> "\\|.+?\\|Hachievement:(\\d+):.+?\\|h\\[(.+?)\\]\\|h\\|r\\s?".r,
-    "spell" -> "\\|Htrade:(\\d+):.+?\\|h\\[(.+?)\\]\\|h\\s?".r
-  )
   override protected val linkSite = "https://db.ascension.gg/"
 }
-*/
+
 class MessageResolverCataclysm(jda: JDA) extends MessageResolverWotLK(jda) {
 
   override protected val linkSite = "https://cata-twinhead.twinstar.cz/"
