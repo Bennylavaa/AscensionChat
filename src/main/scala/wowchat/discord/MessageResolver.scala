@@ -29,7 +29,7 @@ class MessageResolver(jda: JDA) {
     "quest" -> "\\|.+?\\|Hquest:(\\d+):.+?\\|h\\[(.+?)\\]\\|h\\|r\\s?".r
   )
 
-  protected val linkSite = "https://db.ascension.gg/"
+  protected val linkSite = "https://epochhead.com/"
 
   def resolveLinks(message: String): String = {
     linkRegexes.foldLeft(message) {
@@ -199,7 +199,7 @@ class MessageResolverWotLK(jda: JDA) extends MessageResolverTBC(jda) {
     "spell" -> "\\|Htrade:(\\d+):.+?\\|h\\[(.+?)\\]\\|h\\s?".r
   )
 
-  override protected val linkSite = "https://db.ascension.gg/"
+  override protected val linkSite = "https://epochhead.com/"
 }
 
 class MessageResolverCataclysm(jda: JDA) extends MessageResolverWotLK(jda) {
