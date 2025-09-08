@@ -253,7 +253,7 @@ class Discord(discordConnectionCallback: CommonConnectionCallback) extends Liste
     val channel = event.getChannel
     val channelId = channel.getId
     val channelName = event.getChannel.getName.toLowerCase
-    val effectiveName = event.getMember.getEffectiveName
+    val effectiveName = sanitizeName(event.getMember.getEffectiveName)
     val message = (sanitizeMessage(event.getMessage.getContentDisplay) +: event.getMessage.getAttachments.asScala.map(_.getUrl))
       .filter(_.nonEmpty)
       .mkString(" ")
@@ -312,8 +312,13 @@ class Discord(discordConnectionCallback: CommonConnectionCallback) extends Liste
       .exists(filters => filters.enabled && filters.patterns.exists(message.filter(_ >= ' ').matches))
   }
 
+  def sanitizeName(name: String): String = {
+    name.replace("|", "||")
+  }
+
   def sanitizeMessage(message: String): String = {
     EmojiParser.parseToAliases(message, EmojiParser.FitzpatrickAction.REMOVE)
+    message.replace("|", "||")
   }
 
   def splitUpMessage(format: String, name: String, message: String): Seq[String] = {
